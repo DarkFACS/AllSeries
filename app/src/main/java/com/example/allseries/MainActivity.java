@@ -1,6 +1,7 @@
 package com.example.allseries;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -27,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
         lstSerie.add(new Serie("Game Of Thrones", "Categorie serie", "Description serie", R.drawable.got));
         lstSerie.add(new Serie("Rick And Morty", "Categorie serie", "Description serie", R.drawable.rickandmorty));
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+        RecyclerView myrv = findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(this, lstSerie);
+        myrv.setLayoutManager(new GridLayoutManager(this, 2));
+        myrv.setAdapter(mAdapter);
 
     }
 }

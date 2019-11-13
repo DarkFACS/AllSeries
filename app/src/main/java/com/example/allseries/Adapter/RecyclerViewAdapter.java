@@ -1,6 +1,7 @@
 package com.example.allseries.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allseries.R;
 import com.example.allseries.Serie;
+import com.example.allseries.Serie_Activity;
 
 import java.util.List;
 
@@ -37,11 +40,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.tv_serie_title.setText(mData.get(position).getTitle());
         holder.img_serie_thumbnail.setImageResource(mData.get(position).getThumbnail());
 
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, Serie_Activity.class);
+                intent.putExtra("Title", mData.get(position).getTitle());
+                intent.putExtra("Description", mData.get(position).getDescription());
+                intent.putExtra("Thumbnail", mData.get(position).getThumbnail());
+
+                mContext.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -53,12 +69,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView tv_serie_title;
         ImageView img_serie_thumbnail;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_serie_title = itemView.findViewById(R.id.serie_title_id);
             img_serie_thumbnail = itemView.findViewById(R.id.serie_img_id);
+            cardView = itemView.findViewById(R.id.cardview_id);
         }
     }
 }
