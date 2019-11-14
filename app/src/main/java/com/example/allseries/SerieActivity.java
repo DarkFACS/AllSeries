@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Serie_Activity extends AppCompatActivity {
+public class SerieActivity extends AppCompatActivity {
 
     private TextView tvtitle, tvcategory, tvdescription;
     private ImageView img;
