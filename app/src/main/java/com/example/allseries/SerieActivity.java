@@ -32,4 +32,10 @@ public class SerieActivity extends AppCompatActivity {
         img.setImageResource(Image);
 
     }
+
+    public void onBackPressed() {
+        //Si llamas super.onBackPressed(), esto internamente ejecuta finish().
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }
